@@ -85,6 +85,7 @@ function selection() {
 
     document.getElementById('selectTjNEarlDiv').addEventListener('click', function () {
         toeJamNEarl.goroWarn()
+        
         toeJamNEarl.tJbackground()
         toeJamNEarl.tJFight()
     });
@@ -114,10 +115,23 @@ Character.prototype.tJFight = function() {
     })
 }
 
-
 Character.prototype.bbFight = function() {
     fightButton.style.display = "inline-block";
     document.getElementById('fightButtonDiv').addEventListener('click', function () {
         bubbleBobble.attack(goro)
     })
+}
+
+//////////// Inheritance ////////////////////////////////
+//Child Class -- inherits from Parent (Character)
+function secretCharacter(location, name, strength, health, chanceForMiss, chanceForCrit) {
+    
+    Character.call(this, name, strength, health, chanceForMiss, chanceForCrit);
+    this.location = location;
+}
+
+secretCharacter.prototype = Object.create(Character.prototype);
+secretCharacter.prototype.constructor = secretCharacter;
+secretCharacter.prototype.surpriseWarn = function() {
+    this.goroWarn();
 }
